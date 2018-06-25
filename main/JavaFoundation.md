@@ -2,7 +2,10 @@
 
 ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/README.md">返回概览</a>
 
-+ Java内存模型
++ 参考资料
+    + > 深入理解Java虚拟机：JVM高级特性与最佳实践 / 周志明著 -2版- 
+
++ Java内存模型(**重中之重**)
     + JMM(Java Memory Model)，Java虚拟机在执行Java程序的过程会把它所管理的内存划分为若干不同的区域。这些区域都有各自的用途，以及创建和销毁的时间。有的区域随着虚拟机的启动而存在，有的区域则依赖用户线程的启动和结束来创建
     + JMM运行时数据区如图所示
     + ![Image text](http://www.qtu404.com/imageLib/github/20180625095148.png)
@@ -38,6 +41,17 @@
         + 与Java虚拟机栈功能相同，不同的是，Java虚拟机栈为虚拟机执行Java方法(.class字节码)服务，而本地方法栈为Native方法服务。什么是Native方法，自行百度JNI。
 
         + 值得注意的是，我们默认使用的JVM —— SunHotSpot，直接把 本地方法栈 和 Java虚拟机栈合二为一。同样会抛出StackOverflowError异常和OutOfMemoryError异常
+
+    + Java堆(Java Heap)
+        + Java堆是线程共享的区域，也是JMM中最大的一块。用于存放对象的实例以及数组，几乎所有的对象实例都在堆这里分配。注意是几乎，而不是绝对。
+
+        + 由于此区域存放对象的实例。因此，java堆也是垃圾收集的主要区域。又由于现在的垃圾收集器都基于分代收集算法，所以Java堆还可以细分为新生代和老年代，再细致点，还可以向下再分为Eden空间、From Survivor空间、ToSurvivor空间等。关于这部分的详细知识，会在后面的GC部分详细描述。
+
+        + 如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError 异常。
+
+    + 方法区(Medth Area)
++ GC垃圾收集(**重中之重**)
+
 + 多态（重载重写）
 
 + object方法
@@ -49,7 +63,17 @@
 + String、stringbuffer、stringbuilder 联系、区别、源码
 
 + Volatile 原理、源码、与syn区别
+    + 关键字volatile是JVM中最轻量的同步机制。volatile变量具有2种特性：
+        + 保证变量的可见性。对一个volatile变量的读，总是能看到（任意线程）对这个volatile变量最后的写入，这个新值对于其他线程来说是立即可见的。
+        + 屏蔽指令重排序：指令重排序是编译器和处理器为了高效对程序进行优化的手段，下文有详细的分析。
 
+    + volatile语义并不能保证变量的原子性。对任意单个volatile变量的读/写具有原子性，但类似于i++、i–这种复合操作不具有原子性，因为自增运算包括读取i的值、i值增加1、重新赋值3步操作，并不具备原子性。
+
+    + 由于volatile只能保证变量的可见性和屏蔽指令重排序，只有满足下面2条规则时，才能使用volatile来保证并发安全，否则就需要加锁（使用synchronized、lock或者java.util.concurrent中的Atomic原子类）来保证并发中的原子性。
+        + 运算结果不存在数据依赖（重排序的数据依赖性），或者只有单一的线程修改变量的值（重排序的as-if-serial语义）
+        + 变量不需要与其他的状态变量共同参与不变约束
+
+    + 因为需要在本地代码中插入许多内存屏蔽指令在屏蔽特定条件下的重排序，volatile变量的写操作与读操作相比慢一些，但是其性能开销比锁低很多。
 + 线程间通信方式
 
 + 线程的各种状态
