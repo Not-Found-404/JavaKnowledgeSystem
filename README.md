@@ -4,7 +4,7 @@
 
     + > https://zhuanlan.zhihu.com/p/25725929
 
-1. ## Java基础
+1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/JavaFoundation.md">Java基础</a>
 
     + java内存模型
 
