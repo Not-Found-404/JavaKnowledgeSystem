@@ -6,9 +6,8 @@
 
 1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/JavaFoundation.md">Java基础</a>
 
-    + java内存模型
 
-    + 多态（重载重写）
+    + 多态
 
     + object方法
 
@@ -16,7 +15,10 @@
 
     + sleep、notify、wait 联系、区别
 
-    + String、stringbuffer、stringbuilder 联系、区别、源码
+    + String、StringBuffer、StringBuilder （**重中之重**）
+        + 联系
+        + 区别
+        + 源码 
 
     + Volatile 原理、源码、与syn区别
 
@@ -24,9 +26,29 @@
 
     + 线程的各种状态
 
+1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/JVM.md">虚拟机</a>
+
+    + JVM内存模型（**重中之重**）
+        + 每个区的存储、作用
+
+    + JVM类加载 
+        + 类加载机制
+        + 双亲委派模型 （**重中之重**）
+
+    + 垃圾收集器（**重中之重**）
+        + 常用gc算法
+        + 收集器种类、适用场景
+        + fullGC、MinorGC触发条件
+
+    + JVM优化
+        + 可视化工具使用
+        + 日志查询
+        + 各项参数设置
+        + 四种引用
+
 1. ## 集合框架
     + List
-        + ArrayList
+        + ArrayList （**重中之重**）
 
         + LinkedList
 
@@ -35,7 +57,7 @@
         + 三者区别，联系，源码
 
     + Set
-        + HashSet
+        + HashSet（**重中之重**）
 
         + LinkedHashSet
 
@@ -44,7 +66,7 @@
         + 基于什么实现，内部数据结构，适用场景，源码
 
     + Map
-        + HashMap
+        + HashMap（**重中之重**）
 
         + weakHashMao
 
@@ -52,12 +74,12 @@
 
         + TreeMap
 
-        + HashMap与hashtable的区别
+        + HashMap与hashtable的区别 （**重中之重**）
 
         + 内部实现原理、源码、适用场景
 
 1. ## 并发包
-    + ConcurrentHashMap
+    + ConcurrentHashMap （**重中之重**）
         + 原理、源码、与hashmap的区别
 
     + CopyOnWriteArrayList (set)
@@ -95,25 +117,6 @@
 
     + ThreadPoolExecutor
         + 重载方法的参数、各参数作用、源码
-
-1. ## 虚拟机
-    + JVM五大区
-        + 每个区的存储、作用
-
-    + JVM内存模型
-        + 类加载机制
-        + 双亲委派模型
-
-    + 垃圾收集器
-        + 常用gc算法
-        + 收集器种类、适用场景
-        + fullGC、MinorGC触发条件
-
-    + JVM优化
-        + 可视化工具使用
-        + 日志查询
-        + 各项参数设置
-        + 四种引用
 
 1. ## IO流
     + BIO
@@ -174,9 +177,9 @@
         + 一级、二级缓存
 
 1. ## 设计模式
-    + **单例模式**
-    + **工厂模式**
-    + **观察者模式**
+    + 单例模式 （**重中之重**）
+    + 工厂模式 （**重中之重**）
+    + 观察者模式 （**重中之重**）
     + 适配器模式
     + 模仿方法模式
     + 策略模式
@@ -184,14 +187,14 @@
     + 装饰者模式
 
 1. ## 数据结构
-    + 二叉树
+    + 二叉树 （**重中之重**）
         + 平衡二叉树
         + 二叉查找树
         + 红黑树
         + 完全二叉树
         + 满二叉树
         + 概念、适用场景、时间复杂度、好处坏处
-    + B树
+    + B树 （**重中之重**）
         + B-Tree
         + B+Tree
         + 两者的联系、区别、适用场景
@@ -211,12 +214,12 @@
         + 可以手写
 
 1. ## 网络
-    + TCP
+    + TCP （**重中之重**）
         + 三次握手、四次挥手、各种状态、状态改变
         + 和UDP的区别
 
 1. ## IO模型
-    + 同步、异步、阻塞、非阻塞概念
+    + 同步、异步、阻塞、非阻塞概念 （**重中之重**）
     + 模型种类、各自特点、适用场景
     + 如何使用
 
