@@ -4,8 +4,8 @@
 
 + 参考资料
     + > 深入理解Java虚拟机：JVM高级特性与最佳实践 / 周志明著 -2版-
-    + > https://blog.csdn.net/xtayfjpk/article/details/41924283
-    + > http://www.importnew.com/26842.html
+    + > https://blog.csdn.net/xtayfjpk/article/details/41924283 深入理解Java虚拟机笔记---运行时栈帧结构
+    + > http://liwenkun.me/2017/03/06/explore-java-vm-stack/ 探究 Java 虚拟机栈 Explore JVM Stack Posted by lwenkun on March 6, 2017
 
 + JVM内存模型（**重中之重**）
     + JMM(Java Memory Model)，Java虚拟机在执行Java程序的过程会把它所管理的内存划分为若干不同的区域。这些区域都有各自的用途，以及创建和销毁的时间。有的区域随着虚拟机的启动而存在，有的区域则依赖用户线程的启动和结束来创建
