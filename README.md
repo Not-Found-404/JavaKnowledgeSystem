@@ -2,18 +2,20 @@
 
 1. ## 引用资源
 
-    + > https://zhuanlan.zhihu.com/p/25725929
+    + > https://zhuanlan.zhihu.com/p/25725929 2017暑期实习面试总结(java方向)
 
 1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/JavaFoundation.md">Java基础</a>
 
 
     + 多态
 
-    + object方法
+    + Object类
 
     + 类访问权限
 
-    + sleep、notify、wait 联系、区别
+    + sleep、notify、wait 
+        + 联系
+        + 区别
 
     + String、StringBuffer、StringBuilder （**重中之重**）
         + 联系
@@ -31,9 +33,9 @@
     + JVM内存模型（**重中之重**）
         + 每个区的存储、作用
 
-    + JVM类加载 
+    + JVM类加载 （**重中之重**）
         + 类加载机制
-        + 双亲委派模型 （**重中之重**）
+        + 双亲委派模型 
 
     + 垃圾收集器（**重中之重**）
         + 常用gc算法
