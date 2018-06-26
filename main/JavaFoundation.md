@@ -3,7 +3,7 @@
 + ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/README.md">返回概览</a>
 
 + ## 引用资源
-    + > 深入理解Java虚拟机：JVM高级特性与最佳实践 / 周志明著 -2版-
+    + > http://tool.oschina.net/apidocs/apidoc?api=jdk-zh jdk中文API
     + > https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
 + ## 多态
     + 重载(Overload)
@@ -65,19 +65,52 @@
     + ### `public native int hashCode()`详解
         + 返回对象的hashCode值，支持此方法是为了提高哈希表性能
 
-        + 每当在Java应用程序的执行过程中多次调用同一个对象时， hashCode方法必须始终返回相同的整数，前提是对象中使用的信息没有被修改从一个应用程序的执行到同一个应用程序的另一个执行，这个整数不需要保持一致。
+        + 每当在Java应用程序的执行过程中多次调用同一个对象时， hashCode方法必须始终返回相同的整数，前提是对象中使用的信息没有被修改。
 
         + 如果根据 equals（Object）方法，两个对象是相等的，那么在这两个对象上调用 hashCode方法必须产生相同的整数结果。
 
         + 如果两个对象是不相等的，那么根据equals（object）方法，在这两个对象上调用hashCode方法时，必须产生不同的整数结果，理论上不强制那么做。然而，为不相等的对象产生不同的整数结果可能会提高哈希表的性能，所以应该这么做，即若根据equals判断两个对象不同，则两个对象的hashcode方法返回值应该不同。
 
     + ### `public boolean equals(Object obj)`详解
+        + 指示其他某个对象是否与此对象“相等”
 
-    + ### `public boolean equals(Object obj)`详解
+        + equals 方法在非空对象引用上实现相等关系：
+            + 自反性：对于任何非空引用值 x，x.equals(x) 都应返回 true。
+            + 对称性：对于任何非空引用值 x 和 y，当且仅当 y.equals(x) 返回 true 时，x.equals(y) 才应返回 true。
+            + 传递性：对于任何非空引用值 x、y 和 z，如果 x.equals(y) 返回 true，并且 y.equals(z) 返回 true，那么 x.equals(z) 应返回 true。
+            + 一致性：对于任何非空引用值 x 和 y，多次调用 x.equals(y) 始终返回 true 或始终返回 false，前提是对象上 equals 比较中所用的信息没有被修改。
+            + 对于任何非空引用值 x，x.equals(null) 都应返回 false。
+        + Object 类的 equals 方法实现对象上差别可能性最大的相等关系；即，对于任何非空引用值 x 和 y，当且仅当 x 和 y 引用同一个对象时，此方法才返回 true（x == y 具有值 true）。
 
+        + 注意：当此方法被重写时，通常有必要重写 hashCode 方法，以维护 hashCode 方法的常规协定，该协定声明相等对象必须具有相等的哈希码。
+    + ### `protected native Object clone()`详解
+        + 创建并返回此对象的一个副本。对于任何对象 x
+            + x.clone() != x
+                + 为true
+
+            + x.clone().getClass() == x.getClass()
+                + 为true
+
+            + x.clone().equals(x) 
+                + 为true
+
+        + Object 类的 clone 方法执行特定的复制操作。首先，如果此对象的类不能实现接口 Cloneable，则会抛出 CloneNotSupportedException。注意，所有的数组都被视为实现接口 Cloneable。否则，此方法会创建此对象的类的一个新实例，并像通过分配那样，严格使用此对象相应字段的内容初始化该对象的所有字段；这些字段的内容没有被自我复制。所以，此方法执行的是该对象的“浅表复制”，而不“深层复制”操作。
+
+        + Object 类本身不实现接口 Cloneable，所以在类为 Object 的对象上调用 clone 方法将会导致在运行时抛出异常。
+    + ### `public final native Class<?> getClass()`详解
+        + 返回此 Object 的运行时类。返回的 Class 对象是由所表示类的 static synchronized 方法锁定的对象。
+
+        + 实际结果类型是 Class<? extends |X|>，其中 |X| 表示清除表达式中的静态类型，该表达式调用 getClass。 
     + ### sleep、notify、wait将在后面的章节详解
-+ ## 类访问权限
 
++ ## 类访问权限
+    +   
+        | 修饰词 |本类 | 同包的类 |  子类  | 其他类 |
+        | :-: | :-: | :-:    | :-: | :-: |
+        | private | ✔   |  X   | X| X|
+        | friend(默认)  | ✔  |  ✔   |X | X|
+        | protected  | ✔ |  ✔  | ✔ | X |
+        | public | ✔ | ✔  | ✔ |  ✔|
 + ## sleep、notify、wait
     + 联系
     + 区别
