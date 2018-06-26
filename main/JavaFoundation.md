@@ -107,9 +107,9 @@
     +   
         | 修饰词 |本类 | 同包的类 |  子类  | 其他类 |
         | :-: | :-: | :-:    | :-: | :-: |
-        | private | ✔   |  X   | X| X|
-        | friend(默认)  | ✔  |  ✔   |X | X|
-        | protected  | ✔ |  ✔  | ✔ | X |
+        | private | ✔   | ✖ | ✖| ✖|
+        | friend(默认)  | ✔  |  ✔   |✖ | ✖|
+        | protected  | ✔ |  ✔  | ✔ | ✖ |
         | public | ✔ | ✔  | ✔ |  ✔|
 + ## sleep、notify、wait
     + 联系
