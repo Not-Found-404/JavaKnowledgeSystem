@@ -2,9 +2,6 @@
 
 + ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/README.md">返回概览</a>
 
-+ ## 引用资源
-    + > http://tool.oschina.net/apidocs/apidoc?api=jdk-zh jdk中文API
-    + > https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
 + ## 多态
     + 重载(Overload)
         + 一个方法名，参数不同，这叫方法重载。
@@ -101,7 +98,7 @@
         + 返回此 Object 的运行时类。返回的 Class 对象是由所表示类的 static synchronized 方法锁定的对象。
 
         + 实际结果类型是 Class<? extends |X|>，其中 |X| 表示清除表达式中的静态类型，该表达式调用 getClass。 
-    + ### sleep、notify、wait将在后面的章节详解
+    + ### notify、wait将在后面的章节详解
 
 + ## 类访问权限
     +   
@@ -111,16 +108,28 @@
         | friend(默认)  | ✔  |  ✔   |✖ | ✖|
         | protected  | ✔ |  ✔  | ✔ | ✖ |
         | public | ✔ | ✔  | ✔ |  ✔|
-+ ## sleep、notify、wait
-    + 联系
-    + 区别
 
-+ ## String、stringbuffer、stringbuilder 
++ ## sleep、nofity、wait
+    + ### sleep
+        + `Thread.sleep(long millis)`
+
+        + `sleeo()`方法是 Thread类的一个静态方法，作用是强制当前则能够在执行的线程休眠(暂停执行)，以减慢线程
+
+        + 如果从操作系统的层面去描述，这个方法是将当前所在的线程挂起，比如`Thread.sleep(1000)`，即是表明当前线程在未来1000毫秒内都不会去参与CPU使用权限的竞争，不管当前线程优先级如何。也就说，即使当前线程优先级很高，调用此函数，线程也不会得到CPU资源，也就不会被执行。同时，也并不是说，过了1000ms之后，该线程必定执行，只是说继续参与到线程之间的CPU资源竞争中。线程是否执行，取决于其优先级(windos系统，类unix
+        系统采用时间片轮转)。
+
+        + `Thread.Sleep(0)`的作用是“触发操作系统立刻重新进行一次CPU竞争”
+
+        + 线程休眠不会丢失当前线程获取的任何监视器或锁
+
+    + ### nofity
+
++ ## String、stringbuffer、stringbuilder （**重中之重**）
     + 联系
     + 区别
     + 源码
 
-+ ## Volatile 原理、源码、与syn区别
++ ## Volatile 原理、源码、与syn区别 （**重中之重**）
     + 关键字volatile是JVM中最轻量的同步机制。volatile变量具有2种特性：
         + 保证变量的可见性。对一个volatile变量的读，总是能看到（任意线程）对这个volatile变量最后的写入，这个新值对于其他线程来说是立即可见的。
         + 屏蔽指令重排序：指令重排序是编译器和处理器为了高效对程序进行优化的手段，下文有详细的分析。
@@ -133,6 +142,12 @@
 
     + 因为需要在本地代码中插入许多内存屏蔽指令在屏蔽特定条件下的重排序，volatile变量的写操作与读操作相比慢一些，但是其性能开销比锁低很多。
 
-+ ## 线程间通信方式
++ ## 线程间通信方式 （**重中之重**）
 
 + ## 线程的各种状态
+
++ ## 引用资源
+    + > http://tool.oschina.net/apidocs/apidoc?api=jdk-zh jdk中文API
+    + > https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
+
+    + > https://www.cnblogs.com/565261641-fzh/p/5756242.html java中Thread.sleep()函数使用

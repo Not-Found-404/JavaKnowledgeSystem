@@ -1,9 +1,5 @@
 # JavaKnowledgePoint
 
-1. ## 引用资源
-
-    + > https://zhuanlan.zhihu.com/p/25725929 2017暑期实习面试总结(java方向)
-
 1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/JavaFoundation.md">Java基础</a>
 
 
@@ -230,3 +226,7 @@
     + 管道符
     + 查看日志相关命令
     + CPU使用命令
+
++ ## 引用资源
+
+    + > https://zhuanlan.zhihu.com/p/25725929 2017暑期实习面试总结(java方向)
