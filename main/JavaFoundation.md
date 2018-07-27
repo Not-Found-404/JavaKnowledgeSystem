@@ -150,6 +150,13 @@
 
         + String类存储值的方式是常量字符数组，存储此值的字段为` final char value[]`，由于该字段是final的，也就是说一个String对象的值是不可变的。假设定义一个String对象实例，`String str = "abc"`，之后再为其赋值`str = "abcde"`，此时输出`str`对象的，其值必然是`"abcde"`，但这并不意味着该String对象的值发生了编号，String对象本身被替换了。其实真正在改变的时候，原来的str对象的`value`为`['a','b','c']`，在其改变之后，并不是直接在原来`value`的基础上添加`'d','e'`(毕竟是`value`final的)。而是直接新实例了一个String对象，新对象的`value`为`['a','b','c','d','e']`，同时将对象的引用赋给`str`。老的对象其实也还存在，但是会等待GC被回收。
 
+    + ### StringBuilder
+        + <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/jdk1.8/java/lang/StringBuilder.java">StringBuilder源码</a>
+
+        + 相对于String来说，StringBuilder存储值的方式并不是常量，而是普通字符数组。
+
+    + ### StringBuffer
+        + <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/jdk1.8/java/lang/StringBuffer.java">StringBuffer源码</a>
 
 + ## Volatile 原理、源码、与syn区别 （**重中之重**）
     + 关键字volatile是JVM中最轻量的同步机制。volatile变量具有2种特性：
@@ -165,15 +172,72 @@
     + 因为需要在本地代码中插入许多内存屏蔽指令在屏蔽特定条件下的重排序，volatile变量的写操作与读操作相比慢一些，但是其性能开销比锁低很多。
 
 + ## 线程间通信方式 （**重中之重**）
+    + ### 进程间通信
+        + 进程间通信（IPC，InterProcess Communication）是指在不同进程之间传播或交换信息。
 
+        + IPC的方式通常有管道（包括无名管道和命名管道）、消息队列、信号量、共享存储、Socket、Streams等。其中 Socket和Streams支持不同主机上的两个进程IPC。
+    + ### 消息队列
+        + 消息队列，是消息的链接表，存放在内核中。一个消息队列由一个标识符（即队列ID）来标识
+
+        + 消息队列是面向记录的，其中的消息具有特定的格式以及特定的优先级。
+
+        + 消息队列独立于发送与接收进程。进程终止时，消息队列及其内容并不会被删除。
+
+        + 消息队列可以实现消息的随机查询,消息不一定要以先进先出的次序读取,也可以按消息的类型读取。
+
+    + ### 管道
+        + 管道，通常指无名管道，是 UNIX 系统IPC最古老的形式。
+
+        + 它是半双工的（即数据只能在一个方向上流动），具有固定的读端和写端。
+
+        + 它只能用于具有亲缘关系的进程之间的通信（也是父子进程或者兄弟进程之间）。
+
+    + ### FIFO
+        + FIFO，也称为命名管道，它是一种文件类型。
+
+        + FIFO可以在无关的进程之间交换数据，与无名管道不同。
+
+        + FIFO有路径名与之相关联，它以一种特殊设备文件形式存在于文件系统中。
+    + ### 信号量
+        + 信号量（semaphore）与已经介绍过的 IPC 结构不同，它是一个计数器。信号量用于实现进程间的互斥与同步，而不是用于存储进程间通信数据。
+
+        + 信号量用于进程间同步，若要在进程间传递数据需要结合共享内存。
+
+    + ### 共享内存
+        + 共享内存（Shared Memory），指两个或多个进程共享一个给定的存储区。
+
+        + 共享内存是最快的一种 IPC，因为进程是直接对内存进行存取。因为多个进程可以同时操作，所以需要进行同步。信号量+共享内存通常结合在一起使用，信号量用来同步对共享内存的访问。
 + ## 线程的各种状态
+    + ### 产生 (New)
+        + 线程对象已经产生，但尚未被启动，所以无法执行。如通过new产生了一个线程对象后没对它调用start()函数之前
 
-+ ## 参考资料
-    + > http://tool.oschina.net/apidocs/apidoc?api=jdk-zh jdk中文API
-    + > https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
+    + ### 可执行 (Runnable) 
+        + 每个支持多线程的系统都有一个排程器，排程器会从线程池中选择一个线程并启动它。当一个线程处于可执行状态时，表示它可能正处于线程池中等待排排程器启动它；也可能它已正在执行。如执行了一个线程对象的start()方法后，线程就处于可执行状态，但显而易见的是此时线程不一定正在执行中。
+    
+    + ### 死亡 (Dead)
+        + 当一个线程正常结束，它便处于死亡状态。如一个线程的run()函数执行完毕后线程就进入死亡状态
+    
+    + ### 停滞 (Blocked)
+        + 当一个线程处于停滞状态时，系统排程器就会忽略它，不对它进行排程。当处于停滞状态的线程重新回到可执行状态时，它有可能重新执行。如通过对一个线程调用wait()后，线程就进入停滞状态，只有当再次对该线程调用notify或notifyAll后它才能再次回到可执行状态。
 
-    + > https://www.cnblogs.com/565261641-fzh/p/5756242.html  java中Thread.sleep()函数使用
+    + ### 注
+        + sleep 之后还会占用 CPU 资源，而貌似等待就不会
 
-    + > https://www.cnblogs.com/su-feng/p/6659064.html Java中的String，StringBuilder，StringBuffer三者的区别
+        + sleep()使当前线程进入停滞状态，所以执行sleep()的线程在指定的时间内肯定不会执行
++ ## 参考资料    
+    + > ### https://docs.oracle.com/javase/8/docs/api  Java™ Platform, Standard Edition 8 API Specification
 
-    + > https://www.cnblogs.com/xwdreamer/archive/2012/05/12/2496843.html Object.wait()与Object.notify()的用法
+    + > ### https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
+
+    + > ### https://www.cnblogs.com/565261641-fzh/p/5756242.html  java中Thread.sleep()函数使用
+
+    + > ###  https://www.cnblogs.com/su-feng/p/6659064.html Java中的String，StringBuilder，StringBuffer三者的区别
+
+    + > ###  https://www.cnblogs.com/xwdreamer/archive/2012/05/12/2496843.html Object.wait()与Object.notify()的用法
+
+    + > ###  https://blog.csdn.net/berber78/article/details/46324651 线程各种状态
+
+    + > ###  https://www.cnblogs.com/LUO77/p/5816326.html 进程间通信的方式——信号、管道、消息队列、共享内存
+
+    + > ### https://blog.csdn.net/wh_sjc/article/details/70283843 进程间的五种通信方式介绍
+    
