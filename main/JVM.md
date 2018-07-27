@@ -1,11 +1,6 @@
 # Java虚拟机
 
-+ ## ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/README.md">返回概览</a>
-
-+ ## 参考资料
-    + > 深入理解Java虚拟机：JVM高级特性与最佳实践 / 周志明著 -2版-
-    + > https://blog.csdn.net/xtayfjpk/article/details/41924283 深入理解Java虚拟机笔记---运行时栈帧结构
-    + > http://liwenkun.me/2017/03/06/explore-java-vm-stack/ 探究 Java 虚拟机栈 Explore JVM Stack Posted by lwenkun on March 6, 2017
++ ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/README.md">返回概览</a>
 
 + ## JVM内存模型（**重中之重**）
     + ### 概念
@@ -33,7 +28,7 @@
 
         +  程序计数器是唯一一个在Java虚拟机规范中没有规定任何OutOfMemoryError情况的区域
 
-    + ### Java虚拟机栈(Java Virtaul Machine Stacks)
+    + ### Java虚拟机栈(Java Birtual Machine Stacks)
         + Java虚拟栈也是线程私有的内存。其生命周期与线程相同，虚拟栈描述的是**Java方法**执行的内存模型。每个方法在执行的时候，都会创建一个栈帧(Stack Frame)用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法的调用、执行和结束，都对应着栈帧在虚拟机栈入栈、出栈的过程。
 
         + 栈帧(Stack Frame)是用于支持虚拟机进行方法调用和方法执行的数据结构，它是虚拟机运行时数据区的虚拟机栈(Virtual Machine Stack)的栈元素。栈帧存储了方法的局部变量表，操作数栈，动态连接和方法返回地址等信息。
@@ -81,3 +76,8 @@
     + 日志查询
     + 各项参数设置
     + 四种引用
+
++ ## 参考资料
+    + > 深入理解Java虚拟机：JVM高级特性与最佳实践 / 周志明著 -2版-
+    + > https://blog.csdn.net/xtayfjpk/article/details/41924283 深入理解Java虚拟机笔记---运行时栈帧结构
+    + > http://liwenkun.me/2017/03/06/explore-java-vm-stack/ 探究 Java 虚拟机栈 Explore JVM Stack Posted by lwenkun on March 6, 2017

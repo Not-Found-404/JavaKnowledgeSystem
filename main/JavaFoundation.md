@@ -225,19 +225,19 @@
 
         + sleep()使当前线程进入停滞状态，所以执行sleep()的线程在指定的时间内肯定不会执行
 + ## 参考资料    
-    + > ### https://docs.oracle.com/javase/8/docs/api  Java™ Platform, Standard Edition 8 API Specification
+    + >  https://docs.oracle.com/javase/8/docs/api  Java™ Platform, Standard Edition 8 API Specification
 
-    + > ### https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
+    + >https://www.zhihu.com/question/30082151/answer/46688599 作者：Intopass，来源：知乎
 
-    + > ### https://www.cnblogs.com/565261641-fzh/p/5756242.html  java中Thread.sleep()函数使用
+    + > https://www.cnblogs.com/565261641-fzh/p/5756242.html  java中Thread.sleep()函数使用
 
-    + > ###  https://www.cnblogs.com/su-feng/p/6659064.html Java中的String，StringBuilder，StringBuffer三者的区别
+    + > https://www.cnblogs.com/su-feng/p/6659064.html Java中的String，StringBuilder，StringBuffer三者的区别
 
-    + > ###  https://www.cnblogs.com/xwdreamer/archive/2012/05/12/2496843.html Object.wait()与Object.notify()的用法
+    + > https://www.cnblogs.com/xwdreamer/archive/2012/05/12/2496843.html Object.wait()与Object.notify()的用法
 
-    + > ###  https://blog.csdn.net/berber78/article/details/46324651 线程各种状态
+    + > https://blog.csdn.net/berber78/article/details/46324651 线程各种状态
 
-    + > ###  https://www.cnblogs.com/LUO77/p/5816326.html 进程间通信的方式——信号、管道、消息队列、共享内存
+    + > https://www.cnblogs.com/LUO77/p/5816326.html 进程间通信的方式——信号、管道、消息队列、共享内存
 
-    + > ### https://blog.csdn.net/wh_sjc/article/details/70283843 进程间的五种通信方式介绍
+    + >  https://blog.csdn.net/wh_sjc/article/details/70283843 进程间的五种通信方式介绍
     

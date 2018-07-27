@@ -1,4 +1,4 @@
-# JavaKnowledgePoint
+# JavaKnowledgeSystem
 
 1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/JavaFoundation.md">Java基础</a>
 
