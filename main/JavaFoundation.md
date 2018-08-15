@@ -153,12 +153,11 @@
     + ### StringBuilder
         + <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/jdk1.8/java/lang/StringBuilder.java">StringBuilder源码</a>
 
-        + 相对于String来说，StringBuilder存储值的方式并不是常量，而是普通字符数组。
 
     + ### StringBuffer
         + <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/jdk1.8/java/lang/StringBuffer.java">StringBuffer源码</a>
 
-+ ## Volatile 原理、源码、与syn区别 （**重中之重**）
++ ## Volatile 原理、源码、与syn区别 
     + 关键字volatile是JVM中最轻量的同步机制。volatile变量具有2种特性：
         + 保证变量的可见性。对一个volatile变量的读，总是能看到（任意线程）对这个volatile变量最后的写入，这个新值对于其他线程来说是立即可见的。
         + 屏蔽指令重排序：指令重排序是编译器和处理器为了高效对程序进行优化的手段，下文有详细的分析。
@@ -171,7 +170,7 @@
 
     + 因为需要在本地代码中插入许多内存屏蔽指令在屏蔽特定条件下的重排序，volatile变量的写操作与读操作相比慢一些，但是其性能开销比锁低很多。
 
-+ ## 线程间通信方式 （**重中之重**）
++ ## 线程间通信方式
     + ### 进程间通信
         + 进程间通信（IPC，InterProcess Communication）是指在不同进程之间传播或交换信息。
 
