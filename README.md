@@ -13,7 +13,7 @@
         + 联系
         + 区别
 
-    + String、StringBuffer、StringBuilder （**重中之重**）
+    + String、StringBuffer、StringBuilder
         + 联系
         + 区别
         + 源码 

@@ -153,9 +153,16 @@
     + ### StringBuilder
         + <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/jdk1.8/java/lang/StringBuilder.java">StringBuilder源码</a>
 
+        + StringBuild继承自AbstractStringBuilder类，AbstractStringBuilder类封装了大部分操作的实现。AbstractStringBuilder内部用一个`char[] value`来存储值。
+
+        + append()是最常用的方法，它有很多形式的重载。上面是其中一种，用于追加字符串。如果str是null,则会调用appendNull()方法。这个方法其实是追加了'n'、'u'、'l'、'l'这几个字符。如果不是null，则首先扩容，然后调用String的getChars()方法将str追加到value末尾。最后返回对象本身，所以append()可以连续调用。
+
+        + 扩容的方法最终是由expandCapacity()实现的，在这个方法中首先把容量扩大为原来的容量加2，如果此时仍小于指定的容量，那么就把新的容量设为minimumCapacity。然后判断是否溢出，如果溢出了，把容量设为Integer.MAX_VALUE。最后把value值进行拷贝，这显然是耗时操作。
 
     + ### StringBuffer
         + <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/jdk1.8/java/lang/StringBuffer.java">StringBuffer源码</a>
+
+        + StringBuffer和StringBuilder一样，都是继承自抽象类AbstractStringBuilder类，也是一个可变的字符序列。StringBuilder和StringBuffer非常相似，甚至有互相兼容的API，不过，StringBuilder不是线程安全的，这是和StringBuffer的主要区别
 
 + ## Volatile 原理、源码、与syn区别 
     + 关键字volatile是JVM中最轻量的同步机制。volatile变量具有2种特性：
