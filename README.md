@@ -44,7 +44,7 @@
         + 各项参数设置
         + 四种引用
 
-1. ## 集合框架
+1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/Collection.md">集合框架</a>
     + List
         + ArrayList
 
