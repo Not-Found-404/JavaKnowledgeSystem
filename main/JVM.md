@@ -2,7 +2,7 @@
 
 + ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/README.md">返回概览</a>
 
-+ ## JVM内存模型
++ ## JVM内存模型(基于jdk1.7)
     + ### 概念
         + JMM(Java Memory Model)，Java虚拟机在执行Java程序的过程会把它所管理的内存划分为若干不同的区域。这些区域都有各自的用途，以及创建和销毁的时间。有的区域随着虚拟机的启动而存在，有的区域则依赖用户线程的启动和结束来创建
     + ### JMM运行时数据区如图所示

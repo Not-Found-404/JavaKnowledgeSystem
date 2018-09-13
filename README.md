@@ -195,7 +195,7 @@
         + B+Tree
         + 两者的联系、区别、适用场景
 
-1. ## 算法
+1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/Arithmetic.md">算法</a>
     + 直接插入排序
     + 二分插入排序
     + 希尔插入排序
