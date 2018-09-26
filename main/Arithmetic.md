@@ -43,4 +43,15 @@
 ### 代码
 ![Image text](http://static.qtu404.com/imgLab/github/JavaNote/SimpleSelectSort.png)
 ## 堆排序
+
+### 思想
++ 堆排序是对简单选择排序的改进
+
++ 简单选择排序是从n个记录中找出一个最小的记录，需要比较n-1次。但是这样的操作并没有把每一趟的比较结果保存下来，在后一趟的比较中，有许多比较在前一趟已经做过了，但由于前一趟排序时未保存这些比较结果，所以后一趟排序时又重复执行了这些比较操作，因而记录的比较次数较多。
+
++ 堆是具有下列性质的完全二叉树：每个结点的值都大于或等于其左右孩子结点的值，称为大顶堆；或者每个结点的值都小于或等于其左右孩子结点的值，称为小顶堆。 
+### 代码
+![Image text](http://static.qtu404.com/imgLab/github/JavaNote/heapsort_4.png)
+![Image text](http://static.qtu404.com/imgLab/github/JavaNote/heapsort_2.png)
+![Image text](http://static.qtu404.com/imgLab/github/JavaNote/heapsort_3.png)
 ## 归并排序
