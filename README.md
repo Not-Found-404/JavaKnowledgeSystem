@@ -75,6 +75,16 @@
 
         + 内部实现原理、源码、适用场景
 
+1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/Arithmetic.md">算法</a>
+    + 直接插入排序
+    + 二分插入排序
+    + 希尔插入排序
+    + 冒泡排序
+    + 快排
+    + 选择排序
+    + 堆排序
+    + 归并排序
+
 1. ## 并发包
     + ConcurrentHashMap
         + 原理、源码、与hashmap的区别
@@ -194,20 +204,6 @@
         + B-Tree
         + B+Tree
         + 两者的联系、区别、适用场景
-
-1. ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/Arithmetic.md">算法</a>
-    + 直接插入排序
-    + 二分插入排序
-    + 希尔插入排序
-    + 冒泡排序
-    + 快排
-    + 选择排序
-    + 堆排序
-    + 归并排序
-    + 各种排序的思想
-        + 实现复杂度
-        + 稳定性如何
-        + 可以手写
 
 1. ## 网络
     + TCP
