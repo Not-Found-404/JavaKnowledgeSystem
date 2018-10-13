@@ -210,6 +210,6 @@
 + 查看日志相关命令
 + CPU使用命令
 
-## 分布式
+## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/Distributed.md">分布式</a>
 + zookeeper
 + dubbo
