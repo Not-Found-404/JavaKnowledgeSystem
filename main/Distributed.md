@@ -1,4 +1,4 @@
-# 分布式
+# 分布式
 
 ## <a href="https://github.com/wildhunt-unique/JavaNote/blob/master/README.md">返回概览</a>
 
@@ -8,9 +8,9 @@
 
 + zookeeper实际上是yahoo开发的，最初其作为研发Hadoop时的副产品。由于分布式系统中一致性处理较为困难，其他的分布式系统没有必要 费劲重复造轮子，故随后的分布式系统中大量应用了zookeeper，以至于zookeeper成为了各种分布式系统的基础组件。著名的hadoop、kafka、dubbo 都是基于zookeeper而构建。
 
-### 数据模型
+### 数据模型
 
-+ 为了能够解决一致性问题，zookeeper维护了一个类似于文件系统的基本结构。
++ 为了能够解决一致性问题，zookeeper维护了一个类似于文件系统的基本结构。
 
 + 
 
