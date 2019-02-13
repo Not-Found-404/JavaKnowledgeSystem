@@ -213,3 +213,8 @@
 ## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/Distributed.md">分布式</a>
 + zookeeper
 + dubbo
+
+## <a href="https://github.com/wildhunt-unique/JavaKnowledgePoint/blob/master/main/DataStore.md">数据存储</a>
++ jetcache
++ MySql & MariaDB
++ H2
