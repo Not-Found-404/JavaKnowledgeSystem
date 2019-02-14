@@ -78,5 +78,112 @@ response 是一个json 对象。其中acknowledged 字段表示此次操作是�
 #### 删除index
 删除`index` 可以发送delete 请求，格式和新建一样。只不过新建是 put 请求，删除是delete 请求。比如删除weather 这个index，可以使用`curl -X DELETE 'localhost:9200/weather'` 这个命令
 
+#### 设置中文分词
+新建`index` 的时候，需要制定分词的字段，凡是需要搜索的中文字段，都需要单独设置一下。
 
+`curl -X PUT 'localhost:9200/accounts' -d 
+{
+  "mappings": {
+    "person": {
+      "properties": {
+        "user": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_max_word"
+        },
+        "title": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_max_word"
+        },
+        "desc": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_max_word"
+        }
+      }
+    }
+  }
+}'`
 
+命令中请的部分json对象如下
+<pre>
+{
+  "mappings": {
+    "person": {
+      "properties": {
+        "user": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_max_word"
+        },
+        "title": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_max_word"
+        },
+        "desc": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_max_word"
+        }
+      }
+    }
+  }
+}
+</pre>
+上面的命令中，新建了一个名为 account 的 `index` ，里面有一个名为 person 的`type` ，person 有三个字段，分别为 user ， title ， desc 
+
+这三个字段类型都是文本，而且都是中文，需要设置分词。analyzer 是字段文本的分词器，search_analyzer 是搜索词的分词器。ik_max_word分词器是插件ik提供的，可以对文本进行最大数量的分词
+
+#### 新增记录
+向指定的index/type 发送put请求，就可以在index里，新增一条记录。比如向/account/person 新增记录，命令如下
+<pre>
+curl -X PUT 'localhost:9200/accounts/person/1' -d '
+{
+    "user":"张三",
+    "title":"工程师",
+    "desc":"数据库管理"
+}
+'
+</pre>
+运行命令之后，会返回如下格式的json
+<pre>
+{
+	"_index": "accounts",
+	"_type": "person",
+	"_id": "1",
+	"_version": 1,
+	"result": "created",
+	"_shards": {
+		"total": 2,
+		"successful": 1,
+		"failed": 0
+	},
+	"created": true
+}
+</pre>
+
+由于用的是put 请求，请求的url中，最后一项是id。若是使用post请求，则不指定id，id为随机字符串。
+
+#### 查看记录
+向 index/type/id 发送get 请求，即可按照id查看单条记录。如 `curl 'localhost:9200/accounts/person/1?pretty=true'` ，这个命令请求查看id 为1的person记录。返回的结果中，found 字段表示否查询成功
+<pre>
+{
+	"_index": "accounts",
+	"_type": "person",
+	"_id": "1",
+	"_version": 3,
+	"found": true,
+	"_source": {
+		"user": "张三",
+		"title": "工程师",
+		"desc": "数据库管理"
+	}
+}
+</pre>
+
+## 参考资料
++ > http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html 全文搜索引擎 Elasticsearch 
+
++ > https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html Elasticsearch: 权威指南
