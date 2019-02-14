@@ -45,7 +45,7 @@ ES的顶层管理单位就是`index` ，某种程度上来说，`index` 可以�
 ElasticSearch开箱即可使用，在官网上下载之后，在bin目录运行elasticSearch即可。
 
 -----
-### RESTFul的交互
+### RESTFul的数据操作
 #### 检测Elastic是否启动成功
 运行命令 `curl 'http://localhost:9200` ，或者浏览器地址输入 `localhost:9200`。如果有类似以下响应，则表示成功。
 <pre>
@@ -183,6 +183,132 @@ curl -X PUT 'localhost:9200/accounts/person/1' -d '
 }
 </pre>
 
+#### 删除记录
+删除记录就是发送delete 请求，如 ` curl -X DELETE 'localhost:9200/accounts/person/1' `
+
+#### 更新记录
+更新记录就是使用put请求，如下
+<pre>
+$ curl -X PUT 'localhost:9200/accounts/person/1' -d '
+{
+    "user" : "张三",
+    "title" : "工程师",
+    "desc" : "数据库管理，软件开发"
+}
+</pre>
+返回的json格式如下
+<pre>
+{
+	"_index": "accounts",
+	"_type": "person",
+	"_id": "1",
+	"_version": 4,
+	"result": "updated",
+	"_shards": {
+		"total": 2,
+		"successful": 1,
+		"failed": 0
+	},
+	"created": false
+}
+</pre>
+更新之后，_version字段会递增
+
+-----
+### RESTFul的数据查询
+#### 返回所有记录
+使用get 方法，可以直接请求 `/index/type/_search`， 即可返回所有的记录。比如 `curl 'localhost:9200/accounts/person/_search'`
+<pre>
+{
+	"took": 8,
+	"timed_out": false,
+	"_shards": {
+		"total": 5,
+		"successful": 5,
+		"failed": 0
+	},
+	"hits": {
+		"total": 3,
+		"max_score": 1.0,
+		"hits": [{
+			"_index": "accounts",
+			"_type": "person",
+			"_id": "2",
+			"_score": 1.0,
+			"_source": {
+				"user": "张三",
+				"title": "工程师",
+				"desc": "数据库管理"
+			}
+		}, {
+			"_index": "accounts",
+			"_type": "person",
+			"_id": "AWjmgEJDIkfUSlXNnWQh",
+			"_score": 1.0,
+			"_source": {
+				"user": "李四",
+				"title": "工程师",
+				"desc": "系统管理"
+			}
+		}, {
+			"_index": "accounts",
+			"_type": "person",
+			"_id": "1",
+			"_score": 1.0,
+			"_source": {
+				"user": "张三",
+				"title": "工程师",
+				"desc": "数据库管理，软件开发"
+			}
+		}]
+	}
+}
+</pre>
+
+#### 全文搜索
+ES使用自己的查询语法，要求get 请求带有数据体
+<pre>
+curl 'localhost:9200/accounts/person/_search'  -d '
+{
+  "query" : { "match" : { "desc" : "软件" }}
+}'
+</pre>
+上面使用的是match请求，指定匹配条件为desc 字段包含 ‘软件’ 这个词，结果如下
+<pre>
+{
+	"took": 3,
+	"timed_out": false,
+	"_shards": {
+		"total": 5,
+		"successful": 5,
+		"failed": 0
+	},
+	"hits": {
+		"total": 1,
+		"max_score": 0.5377023,
+		"hits": [{
+			"_index": "accounts",
+			"_type": "person",
+			"_id": "1",
+			"_score": 0.5377023,
+			"_source": {
+				"user": "张三",
+				"title": "工程师",
+				"desc": "数据库管理，软件开发"
+			}
+		}]
+	}
+}
+</pre>
+
+----
+### Java API交互
+Java有两种客户端，可与ES进行交互
+1. 节点客户端（Node client）
+    1. 节点客户端将自己作为一个ES节点加入到集群中去
+    1. 节点客户端本身不存任何数据，不过知道数据在那个节点之中，并可以把请求转发到正确的节点
+1. 传输客户端（Transport client）
+    1. 传输客户端可以把请求转发到远程集群，但是他本身不加入到集群中。可以把请求转发到集群中的一个节点上
 ## 参考资料
 + > http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html 全文搜索引擎 Elasticsearch 
 
